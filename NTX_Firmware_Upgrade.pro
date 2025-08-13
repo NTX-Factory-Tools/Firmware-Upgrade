@@ -47,17 +47,16 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /tmp/disk/home/root
 !isEmpty(target.path): INSTALLS += target
 
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../Library_3rdParty/Shell_Interactive/lib64/release/ -lShell_Interactive
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../Library_3rdParty/Shell_Interactive/lib64/debug/ -lShell_Interactive
+else:unix: LIBS += -L$$PWD/../Library_3rdParty/Shell_Interactive/lib64/ -lShell_Interactive
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../Library/ -lShell_Interactive
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../Library/ -lShell_Interactive
-else:unix: LIBS += -L$$OUT_PWD/../../Library/ -lShell_Interactive
+INCLUDEPATH += $$PWD/../Library_3rdParty/Shell_Interactive/include
+DEPENDPATH += $$PWD/../Library_3rdParty/Shell_Interactive/include
 
-INCLUDEPATH += $$PWD/../../Library
-DEPENDPATH += $$PWD/../../Library
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../Library_3rdParty/File_Searcher/lib64/release/ -lFile_Searcher
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../Library_3rdParty/File_Searcher/lib64/debug/ -lFile_Searcher
+else:unix: LIBS += -L$$PWD/../Library_3rdParty/File_Searcher/lib64/ -lFile_Searcher
 
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../Library/ -lFile_Searcher
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../Library/ -lFile_Searcher
-else:unix: LIBS += -L$$OUT_PWD/../../Library/ -lFile_Searcher
-
-INCLUDEPATH += $$PWD/../../Library
-DEPENDPATH += $$PWD/../../Library
+INCLUDEPATH += $$PWD/../Library_3rdParty/File_Searcher/include
+DEPENDPATH += $$PWD/../Library_3rdParty/File_Searcher/include
