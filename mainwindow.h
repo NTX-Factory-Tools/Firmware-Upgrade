@@ -6,12 +6,11 @@
 #include <QStateMachine>
 
 #include "fw_upgrade.h"
-#include "filecopyer.h"
+#include "File_Searcher.h"
+#include "Shell_Interactive.h"
+#include "File_Copy.h"
 
-#include "Library/file_searcher.h"
-#include "Library/shell_interactive.h"
 
-// test2
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -38,9 +37,11 @@ private slots:
 
 	void on_pushButton_Burn_clicked();
 
-	void add_FW_Files(QString fileName);
+	void add_FW_Folder(QString fileName);
 
-	void add_FW_Files_Done();
+	void add_FW_Folder_Done();
+
+	void found_FW_File(QString fileName);
 
 	void on_pushButton_Rescan_clicked();
 
@@ -55,6 +56,12 @@ private slots:
 
 	void start();
 
+    void on_CopyProgress(const qint64 size, const qint64 total);
+
+    void on_CopyFinished(bool status);
+
+	// void on_CopyError(QString error);
+
 private:
 	void init();
 
@@ -64,13 +71,15 @@ private:
     Ui::MainWindow*     ui;
     Shell_Interactive*  m_Shell;
     QStateMachine*      m_Machine;
-		File_Searcher*      m_searcher;
-		FW_Upgrade*					m_upgrade;
-		FileCopyer*					m_copy;
-		QThread*						m_Worker;
+    File_Searcher*      m_searcher;
 
-    QStringList         m_Devices;
-    QStringList         m_Mounts;
-    QString             m_FWLocation;
+    FW_Upgrade*         m_upgrade;
+
+    QStringList             m_Devices;
+    QStringList             m_Mounts;
+    QString                 m_FWLocation;
+    QMap<QString, QString>  m_FWFiles;
+	QMap<QString, quint64>  m_FWSize;
+    File_Copy*              m_Copy;
 };
 #endif // MAINWINDOW_H
