@@ -151,25 +151,25 @@ void FW_Upgrade::QProcess_Message()
     }
 }
 
-const QString &FW_Upgrade::ext4() const
-{
-    return m_ext4;
-}
+// const QString &FW_Upgrade::ext4() const
+// {
+//     return m_ext4;
+// }
 
 const QString FW_Upgrade::emmc_root() const
 {
     return QString(MMC_ROOT_PARTITION);
 }
 
-const QString &FW_Upgrade::kernel() const
-{
-    return m_kernel;
-}
+// const QString &FW_Upgrade::kernel() const
+// {
+//     return m_kernel;
+// }
 
-const QString &FW_Upgrade::dtb() const
-{
-    return m_dtb;
-}
+// const QString &FW_Upgrade::dtb() const
+// {
+//     return m_dtb;
+// }
 
 bool FW_Upgrade::fdisk()
 {

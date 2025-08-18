@@ -10,12 +10,6 @@ class FW_Upgrade : public QObject
 public:
     explicit FW_Upgrade(QString Source_Dir, QObject *parent = nullptr);
 
-    const QString &dtb() const;
-
-    const QString &kernel() const;
-
-    const QString &ext4() const;
-
     const QString emmc_root() const;
 
 public slots:
